@@ -10,4 +10,6 @@ class Item < ApplicationRecord
     validates :days_to_ship_id
     validates :user, foreign_key: true
   end
+
+  has_one_attached :image
 end
