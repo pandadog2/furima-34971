@@ -55,6 +55,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Days to ship must be other than 1')
       end
+      it 'priceが空では登録できない' do
+        @item.price = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price can't be blank")
+      end
       it 'priceが全角数字では登録できない' do
         @item.price = '５００'
         @item.valid?
