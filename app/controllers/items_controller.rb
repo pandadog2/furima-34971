@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
   def new
-      @item = Item.new
+    @item = Item.new
   end
 
   def create
@@ -14,7 +14,7 @@ class ItemsController < ApplicationController
   end
 
   def index
-    #@items = Item.order('created_at DESC')
+    @items = Item.order('created_at DESC')
   end
 
   private
