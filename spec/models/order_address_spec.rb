@@ -55,10 +55,15 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number can't be blank")
       end
-      it 'phone_numberが正しく入力できないと保存できないこと' do
+      it 'phone_numberが10桁、11桁の数値でないと保存できないこと' do
         @order_address.phone_number = '0901234'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include('Phone number is too short')
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid. Input only number')
+      end
+      it 'phone_numberがphone_numberが英数混合では保存できないこと' do
+        @order_address.phone_number = 'o9o12345678'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid. Input only number')
       end
       it 'userが紐付いていないと保存できないこと' do
         @order_address.user_id = nil
